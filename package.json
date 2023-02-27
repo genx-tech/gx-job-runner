@@ -1,0 +1,60 @@
+{
+    "name": "@genx/runner",
+    "version": "1.0.0",
+    "description": "Gen-X Job Runner",
+    "scripts": {
+        "bulid:clean": "shx rm -rf server",
+        "build": "pnpm bulid:clean && NODE_ENV=production babel src -d build --ignore \"**/__test__/*.js\" --source-maps --copy-files --no-copy-ignored",
+        "test:clean": "shx rm -rf allure-results",
+        "test": "pnpm test:clean && DEBUG=1 mocha --reporter mocha-multi --reporter-options mocha-multi=test/mocha-multi-reporters.json test/*.spec.js",
+        "cover": "pnpm test:clean && nyc --reporter=html --reporter=text -- mocha --reporter mocha-multi --reporter-options mocha-multi=test/mocha-multi-reporters.json test/*.spec.js",
+        "report": "allure generate allure-results --clean -o allure-report && allure open allure-report",
+        "bvt": "DEBUG=1 var1=Hello var2=Gen-X node ./src/cli.js test/genx-run.jobs"
+    },
+    "nyc": {
+        "exclude": [
+            ".mocharc.js",
+            "babel.config.js",
+            "test",
+            "build",
+            "**/*.spec.js",
+            "**/*.test.js"
+        ]
+    },
+    "dependencies": {
+        "@genx/algorithm": "^2.1.0",
+        "@genx/app": "^2.1.4",
+        "@genx/config": "^1.1.1",
+        "@genx/jes": "^2.1.4",
+        "@genx/july": "^1.1.1",
+        "@genx/sys": "^0.1.7",
+        "chalk": "^4.1.2",
+        "inquirer": "^8.2.4",
+        "minimist": "^1.2.8",
+        "source-map-support": "0.5.21"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.21.0",
+        "@babel/core": "^7.21.0",
+        "@babel/eslint-parser": "^7.19.1",
+        "@babel/plugin-proposal-class-properties": "^7.18.6",
+        "@babel/plugin-proposal-decorators": "^7.21.0",
+        "@babel/preset-env": "^7.20.2",
+        "@babel/register": "^7.21.0",
+        "@changesets/cli": "^2.26.0",
+        "@genx/babelnode": "7.14.9",
+        "@genx/test": "2.1.5",
+        "allure-commandline": "2.21.0",
+        "allure-js-commons": "2.0.0",
+        "allure-mocha": "2.0.0",
+        "babel-plugin-source-map-support": "^2.2.0",
+        "eslint": "^8.35.0",
+        "mocha": "^9.1.1",
+        "mocha-multi": "^1.1.3",
+        "nyc": "^15.1.0",
+        "should": "^13.2.3",
+        "shx": "0.3.4"
+    },
+    "private": true,
+    "packageManager": "pnpm@7.26.0"
+}
