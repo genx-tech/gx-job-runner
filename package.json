@@ -2,6 +2,10 @@
     "name": "@genx/runner",
     "version": "1.0.0",
     "description": "Gen-X Job Runner",
+    "main": "build/index.js",
+    "bin": {
+        "genx-run": "bin/genx-run.js"
+    },
     "scripts": {
         "bulid:clean": "shx rm -rf server",
         "build": "pnpm bulid:clean && NODE_ENV=production babel src -d build --ignore \"**/__test__/*.js\" --source-maps --copy-files --no-copy-ignored",
@@ -55,6 +59,8 @@
         "should": "^13.2.3",
         "shx": "0.3.4"
     },
-    "private": true,
+    "publishConfig": {
+        "access": "public"
+    },
     "packageManager": "pnpm@7.26.0"
 }

@@ -1,0 +1,22 @@
+# .npmignore 
+
+.babelrc
+.gitignore
+allure-report
+jsconfig.json
+.prettierignore 
+.gitattributes
+.travis.yml
+jsdoc.json
+babel.config.js
+*.log
+src
+test
+examples
+docs
+coverage
+.nyc_output
+allure-results
+.changeset
+.mocharc.js
+.swcrc
